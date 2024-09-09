@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/navigation'
 
 export default function CreateProduct() {
+    const router = useRouter()
+
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -27,9 +29,6 @@ export default function CreateProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const router = useRouter();
-
     const formData = new FormData();
     formData.append(
       "product",
@@ -59,7 +58,7 @@ export default function CreateProduct() {
       alert("Product created successfully!");
       setTimeout(() => {
         router.push("/product")
-      }, 2000);
+      }, 1000);
     } catch (error) {
       console.error("Error creating product", error);
       alert("Failed to create product");
